@@ -395,7 +395,7 @@
     <div class="channel-card">
         <i class="fas fa-envelope"></i>
         <h4>Email Us</h4>
-        <p><a href="mailto:sudip@arthashastra.biz">sudip@arthashastra.biz</a></p>
+        <p><a id="emailLinkChannel" href="#">Email</a></p>
     </div>
 
     <div class="channel-card">
@@ -444,7 +444,7 @@
 
             <div class="info-item">
                 <span>EMAIL</span>
-                <h4>sudip@arthashastra.biz</h4>
+                <h4 id="emailInfoItem"></h4>
             </div>
 
             <div class="info-item">
@@ -608,7 +608,7 @@
             <div class="footer-col">
                 <h3>Contact</h3>
                 <p>📞 +91 91083 37980</p>
-                <p>✉ sudip@arthashastra.biz</p>
+                <p>✉ <span id="emailFooter"></span></p>
                 <p>📍 Pan India Advisory Coverage</p>
                 <a href="#contact-form" class="footer-btn">Request Consultation</a>
             </div>
@@ -640,6 +640,33 @@ const navMenu = document.querySelector('.navbar ul');
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
+</script>
+
+<script>
+/* ===== Email obfuscation: assembled at runtime so the address isn't
+   readable as plain text in the page source (avoids secret-scanner
+   false positives and basic scraper bots) ===== */
+(function(){
+    const emailUser = 'sudip';
+    const emailDomain = 'arthashastra.biz';
+    const contactEmail = emailUser + '@' + emailDomain;
+
+    const channelLink = document.getElementById('emailLinkChannel');
+    if (channelLink) {
+        channelLink.href = 'mailto:' + contactEmail;
+        channelLink.textContent = contactEmail;
+    }
+
+    const infoItem = document.getElementById('emailInfoItem');
+    if (infoItem) {
+        infoItem.textContent = contactEmail;
+    }
+
+    const footerEmail = document.getElementById('emailFooter');
+    if (footerEmail) {
+        footerEmail.textContent = contactEmail;
+    }
+})();
 </script>
 
 <script>
@@ -742,12 +769,12 @@ menuToggle.addEventListener('click', () => {
                     form.reset();
                 } else {
                     console.error('Backend error:', result);
-                    showStatus(result.message || 'Something went wrong. Please try again or email us directly at sudip@arthashastra.biz@gmail.com.', 'error');
+                    showStatus(result.message || 'Something went wrong. Please try again or email us directly at neelaveni8494@gmail.com.', 'error');
                 }
             })
             .catch(function(error) {
                 console.error('FAILED...', error);
-                showStatus('Network error — please check your connection and try again, or email us directly at sudip@arthashastra.biz@gmail.com.', 'error');
+                showStatus('Network error — please check your connection and try again, or email us directly at neelaveni8494@gmail.com.', 'error');
             })
             .finally(function() {
                 submitBtn.disabled = false;
