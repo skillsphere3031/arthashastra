@@ -1,4 +1,11 @@
+# Environment variables — never commit credentials
 .env
 *.env
+backend/.env
+
+# Dependencies
 node_modules/
 **/node_modules/
+
+# Local Netlify folder
+.netlify

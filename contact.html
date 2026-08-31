@@ -460,12 +460,17 @@
 
         <!-- Right -->
         <!--
-            FORM DELIVERY:
-            This form submits via fetch() to a local Node.js + Express +
-            Nodemailer backend at http://localhost:3000/send-consultation,
-            which sends the email over Gmail SMTP. No SMTP credentials or
-            App Password are ever present in this file — those live only
-            in backend/.env and are read server-side.
+            FORM DELIVERY (production):
+            This form submits via fetch() to the Netlify Function at
+            /.netlify/functions/contact, which sends the email over Gmail
+            SMTP using Nodemailer. No SMTP credentials or App Password are
+            ever present in this file — those live only as Netlify
+            environment variables (SMTP_USER, SMTP_PASS, RECEIVER_EMAIL)
+            and are read server-side inside the function.
+
+            For local testing without Netlify CLI, run `node server.js`
+            from /backend and temporarily point this fetch() at
+            http://localhost:3000/send-consultation instead.
         -->
         <form class="contact-form" id="arthaForm" novalidate>
 
@@ -755,7 +760,7 @@ menuToggle.addEventListener('click', () => {
             timeline: document.getElementById('timeline').value
         };
 
-        fetch('http://localhost:3000/send-consultation', {
+        fetch('/.netlify/functions/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
