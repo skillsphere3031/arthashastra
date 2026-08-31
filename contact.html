@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | ARTHASHASTRA — Ancient Wisdom. Modern Knowledge.</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* page-specific additions — kept separate so style.css stays untouched */
+
+.page-hero{
+    padding:160px 8% 70px;
+    text-align:center;
+    background:var(--ivory);
+}
+.page-hero h1{
+    font-size:clamp(40px,5vw,64px);
+    color:var(--charcoal);
+    margin:14px 0 18px;
+}
+.page-hero p{
+    max-width:620px;
+    margin:0 auto;
+    color:var(--grey);
+    font-size:20px;
+    line-height:1.8;
+}
+
+.contact-channels{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    max-width:1100px;
+    margin:0 auto 100px;
+    padding:0 8%;
+}
+.channel-card{
+    background:#FFFDF8;
+    border:1px solid rgba(201,168,76,.25);
+    padding:40px 30px;
+    text-align:center;
+    transition:.4s ease;
+}
+.channel-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+.channel-card i{
+    font-size:30px;
+    color:var(--gold);
+    margin-bottom:18px;
+}
+.channel-card h4{
+    font-size:22px;
+    color:var(--charcoal);
+    margin-bottom:8px;
+}
+.channel-card p{
+    color:var(--grey);
+    font-size:16px;
+    line-height:1.6;
+}
+.channel-card a{
+    color:var(--charcoal);
+    text-decoration:none;
+}
+.channel-card a:hover{ color:var(--saffron); }
+
+/* form status + validation feedback */
+.form-status{
+    grid-column:1 / -1;
+    padding:16px 20px;
+    font-size:16px;
+    display:none;
+}
+.form-status.success{
+    display:block;
+    background:rgba(34,139,87,.08);
+    border:1px solid rgba(34,139,87,.3);
+    color:#1d6b48;
+}
+.form-status.error{
+    display:block;
+    background:rgba(194,65,12,.08);
+    border:1px solid rgba(194,65,12,.3);
+    color:var(--deep);
+}
+.contact-form .error-msg{
+    grid-column:1 / -1;
+    color:var(--deep);
+    font-size:14px;
+    margin-top:-15px;
+    display:none;
+}
+.input-group.invalid input,
+.input-group.invalid select,
+.input-group.invalid textarea{
+    border-bottom:1px solid var(--deep);
+}
+.contact-btn[disabled]{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.map-embed{
+    max-width:1100px;
+    margin:0 auto 0;
+    padding:0 8% 120px;
+}
+.map-embed iframe{
+    width:100%;
+    height:380px;
+    border:1px solid rgba(201,168,76,.25);
+    filter:grayscale(15%) sepia(8%);
+}
+
+/* =========================================================
+   RESPONSIVE — layout only, no functionality/logic changes.
+   Breakpoints: tablet (≤991px), large phone (≤767px),
+   small phone (≤480px). Purely visual reflow/scaling.
+========================================================= */
+
+/* ---------- Tablet & below (≤991px) ---------- */
+@media (max-width: 991px){
+
+    .page-hero{
+        padding:130px 6% 55px;
+    }
+    .page-hero p{
+        font-size:18px;
+        max-width:520px;
+    }
+
+    .contact-channels{
+        grid-template-columns:repeat(2,1fr);
+        gap:22px;
+        padding:0 6%;
+        margin-bottom:70px;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+        padding:0 6%;
+    }
+
+    .contact-info{
+        text-align:left;
+        margin-bottom:10px;
+    }
+
+    .map-embed{
+        padding:0 6% 90px;
+    }
+    .map-embed iframe{
+        height:300px;
+    }
+}
+
+/* ---------- Large phones (≤767px) ---------- */
+@media (max-width: 767px){
+
+    .page-hero{
+        padding:120px 5% 45px;
+    }
+    .page-hero h1{
+        font-size:clamp(30px,8vw,42px);
+        line-height:1.25;
+    }
+    .page-hero p{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .contact-channels{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:0 5%;
+        margin-bottom:55px;
+    }
+    .channel-card{
+        padding:30px 24px;
+    }
+
+    .contact-heading h2{
+        font-size:clamp(26px,6vw,34px);
+    }
+    .contact-heading p{
+        font-size:15px;
+    }
+
+    .contact-grid{
+        padding:0 5%;
+        gap:40px;
+    }
+
+    /* form fields stack full-width on mobile regardless of desktop grid */
+    .contact-form{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+    .contact-form .input-group,
+    .contact-form .input-group.full-width{
+        grid-column:1 / -1;
+    }
+
+    .checkbox-group-label{
+        font-size:15px;
+    }
+    .checkbox-option{
+        align-items:flex-start;
+    }
+    .checkbox-text{
+        font-size:14.5px;
+        line-height:1.5;
+    }
+
+    .form-status{
+        font-size:14px;
+        padding:14px 16px;
+    }
+
+    .contact-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .map-embed{
+        padding:0 5% 70px;
+    }
+    .map-embed iframe{
+        height:250px;
+    }
+
+    /* footer */
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:32px 24px;
+    }
+}
+
+/* ---------- Small phones (≤480px) ---------- */
+@media (max-width: 480px){
+
+    .page-hero{
+        padding:110px 5% 40px;
+    }
+    .page-hero h1{
+        font-size:clamp(26px,9vw,34px);
+    }
+    .page-hero p{
+        font-size:15px;
+    }
+
+    .contact-channels{
+        padding:0 5%;
+    }
+    .channel-card{
+        padding:26px 20px;
+    }
+    .channel-card i{
+        font-size:26px;
+    }
+    .channel-card h4{
+        font-size:19px;
+    }
+    .channel-card p{
+        font-size:15px;
+    }
+
+    .contact-heading span{
+        font-size:12px;
+    }
+    .contact-heading h2{
+        font-size:clamp(22px,7vw,28px);
+    }
+
+    .contact-info h3{
+        font-size:20px;
+    }
+    .info-item h4{
+        font-size:16px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea{
+        font-size:15px;
+    }
+
+    .checkbox-text{
+        font-size:14px;
+    }
+    .checkbox-text em{
+        display:block;
+        font-size:12.5px;
+    }
+
+    .contact-btn{
+        font-size:15px;
+        padding:14px 20px;
+        letter-spacing:.5px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+        text-align:left;
+    }
+    .footer-bottom{
+        flex-direction:column;
+        gap:12px;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sanskrit Background Elements -->
+<div class="sanskrit-bg">
+    <span>अर्थ</span>
+    <span>नीति</span>
+    <span>शक्ति</span>
+    <span>ज्ञान</span>
+    <span>समृद्धि</span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        <div class="english">ARTHASHASTRA</div>
+    </div>
+
+    <button class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#advisory">Advisory</a></li>
+        <li><a href="index.html#insights">Insights</a></li>
+        <li><a href="contact.html" style="color:#D97706;">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+        <a href="#contact-form" class="consult-btn">Request Consultation</a>
+    </div>
+
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+    <span class="section-tag">GET IN TOUCH</span>
+    <h1>Begin A Confidential Conversation</h1>
+    <p>
+        Connect with our advisory team to discuss your financial, strategic
+        and wealth management objectives. Every engagement begins with a
+        private, no-obligation discussion.
+    </p>
+    <div class="luxury-divider">
+        <span></span>
+        <svg width="70" height="24" viewBox="0 0 70 24">
+            <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                     C58 0 48 0 35 12 C22 24 12 24 2 12"
+                  fill="none"
+                  stroke="#C9A84C"
+                  stroke-width="2"/>
+        </svg>
+        <span></span>
+    </div>
+</header>
+
+<!-- QUICK CHANNELS -->
+<section class="contact-channels">
+
+    <div class="channel-card">
+        <i class="fas fa-phone"></i>
+        <h4>Call Us</h4>
+        <p><a href="tel:+919108337980">+91 91083 37980</a></p>
+    </div>
+
+    <div class="channel-card">
+        <i class="fas fa-envelope"></i>
+        <h4>Email Us</h4>
+        <p><a href="mailto:sudip@arthashastra.biz">sudip@arthashastra.biz</a></p>
+    </div>
+
+    <div class="channel-card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h4>Advisory Coverage</h4>
+        <p>Pan India · 100% Confidential Engagements</p>
+    </div>
+
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section class="contact-section" id="contact-form">
+
+    <div class="contact-heading">
+        <span>PRIVATE CONSULTATION</span>
+        <h2>Tell Us About Your Requirements</h2>
+        <p>
+            Fill in the form below and our advisory team will reach out within
+            one business day to arrange a confidential discussion.
+        </p>
+    </div>
+
+    <div class="luxury-divider">
+        <span></span>
+        <svg width="70" height="24" viewBox="0 0 70 24">
+            <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                     C58 0 48 0 35 12 C22 24 12 24 2 12"
+                  fill="none"
+                  stroke="#C9A84C"
+                  stroke-width="2"/>
+        </svg>
+        <span></span>
+    </div>
+
+    <div class="contact-grid">
+
+        <!-- Left -->
+        <div class="contact-info">
+            <h3>Arthashastra Advisory</h3>
+            <p>Ancient Wisdom. Modern Knowledge.</p>
+
+            <div class="info-item">
+                <span>PHONE</span>
+                <h4>+91 91083 37980</h4>
+            </div>
+
+            <div class="info-item">
+                <span>EMAIL</span>
+                <h4>sudip@arthashastra.biz</h4>
+            </div>
+
+            <div class="info-item">
+                <span>ADVISORY COVERAGE</span>
+                <h4>Pan India</h4>
+            </div>
+
+            <div class="info-item">
+                <span>CONFIDENTIALITY</span>
+                <h4>100% Private Engagements</h4>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <!--
+            FORM DELIVERY:
+            This form submits via fetch() to a local Node.js + Express +
+            Nodemailer backend at http://localhost:3000/send-consultation,
+            which sends the email over Gmail SMTP. No SMTP credentials or
+            App Password are ever present in this file — those live only
+            in backend/.env and are read server-side.
+        -->
+        <form class="contact-form" id="arthaForm" novalidate>
+
+    <div class="input-group">
+        <input type="text" id="fullName" name="name" placeholder="Full Name" required>
+    </div>
+
+    <div class="input-group">
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-group">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="company" name="company" placeholder="Company Name">
+    </div>
+
+    <div class="input-group full-width">
+        <select id="profile" name="profile" required>
+            <option value="" disabled selected>Which of the following best describes your profile?</option>
+            <option>Business Owner / Founder</option>
+            <option>Corporate Executive / C-Suite</option>
+            <option>Family Office / High-Net-Worth Individual (HNWI)</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width checkbox-group">
+        <label class="checkbox-group-label">Which areas of our advisory framework are you looking to optimize?</label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Corporate Strategy & Growth">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Corporate Strategy & Growth <em>(Scaling, organizational design)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Wealth & Investment Management">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Wealth & Investment Management <em>(Prosperity, asset allocation)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Corporate Governance & Ethics">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Corporate Governance & Ethics <em>(Risk management, structure)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Succession Planning & Leadership">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Succession Planning & Leadership <em>(Generational wealth transfer, executive transition)</em></span>
+        </label>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="annual_revenue" name="annual_revenue" required>
+            <option value="" disabled selected>What is your company's approximate annual revenue?</option>
+            <option>Under 1 Cr</option>
+            <option>1 Cr – 5 Cr</option>
+            <option>5 Cr – 20 Cr</option>
+            <option>20 Cr - 50 Cr</option>
+            <option>50 Cr - 100 Cr</option>
+            <option>Above 100 Cr</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="assets_size" name="assets_size">
+            <option value="" disabled selected>For Individuals/Family Offices: Approximate portfolio/assets size</option>
+            <option>Under 5 Cr</option>
+            <option>5 Cr – 20 Cr</option>
+            <option>20 Cr – 50 Cr</option>
+            <option>Above 50 Cr</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width">
+        <textarea id="objective" name="objective" placeholder="Briefly describe the primary objective or challenge you wish to address with our strategists." required></textarea>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="timeline" name="timeline" required>
+            <option value="" disabled selected>What is your expected timeline to begin this engagement?</option>
+            <option>Immediately (Within the next 30 days)</option>
+            <option>Planning ahead (1–3 months)</option>
+            <option>Just exploring options</option>
+        </select>
+    </div>
+
+    <div class="form-status" id="formStatus"></div>
+
+    <button type="submit" class="contact-btn" id="submitBtn">
+        Request Private Consultation
+    </button>
+
+</form>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-section">
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-col">
+                <h4 class="footer-brand">ARTHASHASTRA</h4>
+                <p>
+                    Ancient Wisdom. Modern Knowledge.
+                    Strategic financial advisory for founders,
+                    enterprises, investors and family offices.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Advisory</a></li>
+                    <li><a href="#">Insights</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Advisory Domains</h3>
+                <ul>
+                    <li>Treasury Management</li>
+                    <li>Mergers &amp; Acquisitions</li>
+                    <li>Investment Strategy</li>
+                    <li>Family Office Advisory</li>
+                    <li>Founder Advisory</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>📞 +91 91083 37980</p>
+                <p>✉ sudip@arthashastra.biz</p>
+                <p>📍 Pan India Advisory Coverage</p>
+                <a href="#contact-form" class="footer-btn">Request Consultation</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Arthashastra Advisory. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+window.addEventListener("scroll", () => {
+    document.querySelector(".navbar")
+        .classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.navbar ul');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+
+<script>
+/* ===== Contact form: client-side validation + backend submit (Nodemailer) ===== */
+
+(function(){
+    const form = document.getElementById('arthaForm');
+    const statusBox = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showStatus(message, type){
+        statusBox.textContent = message;
+        statusBox.className = 'form-status ' + type;
+    }
+
+    function clearFieldError(group){
+        group.classList.remove('invalid');
+    }
+
+    function setFieldError(group){
+        group.classList.add('invalid');
+    }
+
+    function validate(){
+        let valid = true;
+        const fields = [
+            { el: document.getElementById('fullName'), check: v => v.trim().length > 1 },
+            { el: document.getElementById('email'), check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { el: document.getElementById('phone'), check: v => /^[0-9+\-\s()]{7,15}$/.test(v) },
+            { el: document.getElementById('profile'), check: v => v !== '' },
+            { el: document.getElementById('annual_revenue'), check: v => v !== '' },
+            { el: document.getElementById('objective'), check: v => v.trim().length > 5 },
+            { el: document.getElementById('timeline'), check: v => v !== '' }
+        ];
+
+        fields.forEach(f => {
+            const group = f.el.closest('.input-group');
+            if(!f.check(f.el.value)){
+                setFieldError(group);
+                valid = false;
+            } else {
+                clearFieldError(group);
+            }
+        });
+
+        return valid;
+    }
+
+    // live-clear error state as the user fixes a field
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+        el.addEventListener('input', () => {
+            const group = el.closest('.input-group');
+            if(group) clearFieldError(group);
+        });
+    });
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        statusBox.className = 'form-status';
+
+        if(!validate()){
+            showStatus('Please fill in all required fields correctly before submitting.', 'error');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const formData = {
+            name: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            company: document.getElementById('company').value,
+
+            profile: document.getElementById('profile').value,
+
+            advisory_areas: Array.from(
+                document.querySelectorAll('input[name="advisory_areas"]:checked')
+            )
+            .map(checkbox => checkbox.value)
+            .join(', ') || 'None selected',
+
+            annual_revenue: document.getElementById('annual_revenue').value,
+            assets_size: document.getElementById('assets_size').value,
+            objective: document.getElementById('objective').value,
+            timeline: document.getElementById('timeline').value
+        };
+
+        fetch('http://localhost:3000/send-consultation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(async function(response) {
+                const result = await response.json().catch(() => ({}));
+                if (response.ok && result.success) {
+                    showStatus('Thank you. Your request has been received — our advisory team will be in touch shortly.', 'success');
+                    form.reset();
+                } else {
+                    console.error('Backend error:', result);
+                    showStatus(result.message || 'Something went wrong. Please try again or email us directly at sudip@arthashastra.biz@gmail.com.', 'error');
+                }
+            })
+            .catch(function(error) {
+                console.error('FAILED...', error);
+                showStatus('Network error — please check your connection and try again, or email us directly at sudip@arthashastra.biz@gmail.com.', 'error');
+            })
+            .finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Private Consultation';
+            });
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARTHASHASTRA | Ancient Wisdom. Modern Knowledge.</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* =========================================================
+   RESPONSIVE ADDITIONS — layered on top of style.css.
+   Nothing in style.css is modified; these rules only apply
+   at narrow viewports and only touch layout/sizing, never
+   content, colors, fonts, or functionality.
+========================================================= */
+
+/* ---------- HERO ----------
+   hero4.png has "ETHICS / OBJECTIVE / ORGANIZATION / ...
+   STRATEGY / GROWTH / WEALTH / ..." baked into the image
+   pixels. If style.css uses object-fit:cover on this image,
+   narrow screens crop the right-hand words off. Switching to
+   contain shows the full image without cropping, on every
+   mobile/tablet width — not just one breakpoint. */
+@media (max-width: 991px){
+    .hero{
+        min-height:0;
+        aspect-ratio:4 / 3;
+    }
+    .hero-bg img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        object-position:center;
+        background:var(--ivory, #F8F5EE);
+    }
+    .hero-content{
+        padding:16px 5%;
+    }
+    .hero-content .btn-secondary{
+        margin-top:70px;
+    }
+}
+@media (max-width: 480px){
+    .hero{
+        aspect-ratio:1 / 1;
+    }
+    .hero-content .btn-secondary{
+        margin-top:40px;
+        font-size:14px;
+        padding:12px 22px;
+    }
+}
+@media (max-width: 360px){
+    .hero{
+        aspect-ratio:3 / 4;
+    }
+}
+
+/* ---------- METRICS BAR ----------
+   Rebuilt as a clean responsive grid instead of relying on
+   flex-wrap, so icon + number + label stay aligned as a unit
+   on every screen size instead of wrapping awkwardly. */
+@media (max-width: 991px){
+    .metrics-bar{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:28px 20px;
+        text-align:left;
+        padding:40px 5%;
+        margin:0;
+    }
+    .metric{
+        display:flex;
+        align-items:flex-start;
+        gap:10px;
+        text-align:left;
+        margin:0;
+        padding:0;
+    }
+    .metric i{
+        flex-shrink:0;
+        margin:2px 0 0 0;
+    }
+}
+@media (max-width: 560px){
+    .metrics-bar{
+        grid-template-columns:1fr;
+        gap:22px;
+        padding:32px 5%;
+    }
+}
+@media (max-width: 480px){
+    .metric h3{
+        font-size:22px;
+    }
+    .metric p{
+        font-size:12px;
+        line-height:1.5;
+    }
+}
+
+/* ---------- ADVISORY DOMAINS GRID ---------- */
+@media (max-width: 991px){
+    .domain-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:24px;
+    }
+}
+@media (max-width: 600px){
+    .domain-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+}
+
+/* ---------- WHO WE SERVE (audience grid) ---------- */
+@media (max-width: 991px){
+    .audience-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:20px;
+    }
+}
+@media (max-width: 480px){
+    .audience-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ---------- INSIGHTS / COUNCIL REGISTER ---------- */
+@media (max-width: 991px){
+    .council-register{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+}
+
+/* ---------- CLIENT JOURNEY ---------- */
+@media (max-width: 767px){
+    .journey-wrapper{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:32px;
+    }
+    .journey-line{
+        width:2px;
+        height:32px;
+    }
+}
+
+/* ---------- THOUGHT LEADERSHIP ---------- */
+@media (max-width: 991px){
+    .insight-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+}
+
+/* ---------- TESTIMONIALS ---------- */
+@media (max-width: 991px){
+    .testimonial-grid{
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+}
+
+/* ---------- FAQ ---------- */
+@media (max-width: 600px){
+    .faq-question{
+        font-size:15px;
+        padding:16px 18px;
+    }
+    .faq-answer p{
+        font-size:14px;
+    }
+}
+
+/* ---------- CONTACT SECTION (home page inline form) ---------- */
+@media (max-width: 991px){
+    .contact-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+}
+@media (max-width: 767px){
+    .contact-form{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+    .contact-form .input-group,
+    .contact-form .input-group.full-width{
+        grid-column:1 / -1;
+    }
+    .checkbox-text{
+        font-size:14.5px;
+    }
+    .contact-btn{
+        width:100%;
+    }
+}
+
+/* ---------- FOOTER ---------- */
+@media (max-width: 767px){
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:32px 24px;
+    }
+}
+@media (max-width: 480px){
+    .footer-grid{
+        grid-template-columns:1fr;
+        text-align:left;
+    }
+    .footer-bottom{
+        flex-direction:column;
+        gap:12px;
+        text-align:center;
+    }
+}
+
+/* ---------- FORM STATUS / VALIDATION (ported from contact.html) ---------- */
+.form-status{
+    grid-column:1 / -1;
+    padding:16px 20px;
+    font-size:16px;
+    display:none;
+}
+.form-status.success{
+    display:block;
+    background:rgba(34,139,87,.08);
+    border:1px solid rgba(34,139,87,.3);
+    color:#1d6b48;
+}
+.form-status.error{
+    display:block;
+    background:rgba(194,65,12,.08);
+    border:1px solid rgba(194,65,12,.3);
+    color:var(--deep);
+}
+.input-group.invalid input,
+.input-group.invalid select,
+.input-group.invalid textarea{
+    border-bottom:1px solid var(--deep);
+}
+.contact-btn[disabled]{
+    opacity:.6;
+    cursor:not-allowed;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Sanskrit Background Elements -->
+<div class="sanskrit-bg">
+    <span>अर्थ</span>
+    <span>नीति</span>
+    <span>शक्ति</span>
+    <span>ज्ञान</span>
+    <span>समृद्धि</span>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+
+
+
+<div class="english">
+ARTHASHASTRA
+</div>
+
+</div>
+
+<!-- ADD HERE -->
+<button class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="#advisory">Advisory</a></li>
+<li><a href="#insights">Insights</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-right">
+
+    <a href="contact.html" class="consult-btn">
+        Request Consultation
+    </a>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-bg">
+        <img src="images\hero4.png" alt="Chanakya">
+    </div>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-fade"></div>
+    <div class="hero-fade-ivory"></div>
+
+    <div class="hero-content">
+
+
+        <a href="#advisory" class="btn-secondary">
+            Explore Advisory Domains
+        </a>
+    </div>
+
+</section>
+<section class="metrics-bar">
+
+    <div class="metric">
+        <i class="fas fa-landmark"></i>
+        <div>
+            <h3>₹3,000 Cr+</h3>
+            <p>INVESTMENT PORTFOLIO UNDER ADVISORY</p>
+        </div>
+    </div>
+
+    <div class="metric">
+        <i class="fas fa-shield-alt"></i>
+        <div>
+            <h3>45+</h3>
+            <p>YEARS COMBINED EXPERIENCE</p>
+        </div>
+    </div>
+
+    <div class="metric">
+        <i class="fas fa-lock"></i>
+        <div>
+            <h3>100%</h3>
+            <p>CONFIDENTIAL ADVISORY</p>
+        </div>
+    </div>
+
+    <div class="metric">
+        <i class="fas fa-map-marked-alt"></i>
+        <div>
+            <h3>Global</h3>
+            <p>CLIENT NETWORK</p>
+        </div>
+    </div>
+
+</section>
+
+<section id="advisory" class="domains">
+    <div class="section-title">
+        <span>ADVISORY DOMAINS</span>
+
+        <h2>Executive Advisory Services</h2>
+
+        <div class="luxury-divider">
+    <span></span>
+
+    <svg width="70" height="24" viewBox="0 0 70 24">
+        <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                 C58 0 48 0 35 12 C22 24 12 24 2 12"
+              fill="none"
+              stroke="#C9A84C"
+              stroke-width="2"/>
+    </svg>
+
+    <span></span>
+</div>
+
+        <p>
+            Ancient wisdom applied to modern financial decision-making.
+        </p>
+    </div>
+
+    <div class="domain-grid">
+
+        <!-- Card 1 -->
+        <div class="domain-card">
+            <img src="images\a1.png">
+
+            <div class="domain-content">
+                <h3>Corporate Treasury Management</h3>
+                <p>
+                    Strategic liquidity planning, capital allocation and treasury governance.
+                </p>
+            </div>
+        </div>
+
+         <div class="domain-card">
+            <img src="images/a2.jpeg">
+
+            <div class="domain-content">
+                <h3>Mergers & Acquisitions</h3>
+                <p>
+                    End-to-end advisory for acquisitions, divestitures, valuations, due diligence, negotiations, and transaction execution to maximize strategic outcomes.
+                </p>
+            </div>
+        </div>
+
+         <div class="domain-card">
+            <img src="images/a3.jpeg">
+
+            <div class="domain-content">
+                <h3>Family Office Advisory</h3>
+                <p>
+                  Tailored wealth structuring, succession planning, governance frameworks, and multi-generational asset preservation for enduring family prosperity.                </p>
+            </div>
+        </div>
+
+         <div class="domain-card">
+            <img src="images/a4.png">
+
+            <div class="domain-content">
+                <h3>Investment Strategy</h3>
+                <p>
+                    Strategic liquidity planning, capital allocation and treasury governance.
+                </p>
+            </div>
+        </div>
+         <div class="domain-card">
+            <img src="images/a4.jpeg">
+
+            <div class="domain-content">
+                <h3>Startup & Founder Advisory</h3>
+                <p>
+                    Strategic financial guidance for founders covering fundraising, growth planning, capital strategy, investor readiness, and business scalability.
+                </p>
+            </div>
+        </div>
+                
+        <div class="domain-card">
+            <img src="images/a5.jpeg">
+
+            <div class="domain-content">
+                <h3>C-Suite Financial Counsel</h3>
+                <p>
+                    Confidential executive advisory supporting CEOs, CFOs, and leadership teams with financial strategy, corporate governance, and critical decision-making.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="who-we-serve">
+
+    <div class="section-title">
+        <span>WHO WE SERVE</span>
+
+        <h2>Trusted By Visionaries, Wealth Creators & Leaders</h2>
+
+        <div class="luxury-divider">
+            <span></span>
+            <svg width="70" height="24" viewBox="0 0 70 24">
+                <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                         C58 0 48 0 35 12 C22 24 12 24 2 12"
+                      fill="none"
+                      stroke="#C9A84C"
+                      stroke-width="2"/>
+            </svg>
+            <span></span>
+        </div>
+
+        <p>
+            Delivering strategic financial counsel to India's most ambitious individuals, families and enterprises.
+        </p>
+    </div>
+
+    <div class="audience-grid">
+
+        <div class="audience-card">
+<div class="card-icon">
+    <i class="fa-solid fa-crown"></i>
+</div>            <h3>UHNIs</h3>
+            <p>Ultra-high-net-worth individuals seeking strategic wealth stewardship.</p>
+        </div>
+
+        <div class="audience-card">
+<div class="card-icon">
+    <i class="fa-solid fa-chart-line"></i>
+</div>            <h3>HNIs</h3>
+            <p>Personalized financial guidance for wealth preservation and growth.</p>
+        </div>
+
+        <div class="audience-card">
+<div class="card-icon">
+    <i class="fa-solid fa-people-group"></i>
+</div>            <h3>Family Offices</h3>
+            <p>Multi-generational planning, governance and legacy preservation.</p>
+        </div>
+
+        <div class="audience-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h3>Startup Founders</h3>
+            <p>Capital strategy, fundraising support and long-term growth planning.</p>
+        </div>
+
+        <div class="audience-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h3>C-Level Executives</h3>
+            <p>Confidential strategic financial counsel for executive leadership.</p>
+        </div>
+
+        <div class="audience-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-industry"></i>
+            </div>
+            <h3>Industrialists</h3>
+            <p>Corporate treasury, investments and succession planning expertise.</p>
+        </div>
+
+        <div class="audience-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-coins"></i>
+            </div>
+            <h3>Investors</h3>
+            <p>Portfolio strategy and capital allocation aligned with objectives.</p>
+        </div>
+
+        <div class="audience-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h3>Business Owners</h3>
+            <p>Financial frameworks that support sustainable business growth.</p>
+        </div>
+
+    </div>
+
+</section>
+<section class="why-arthashastra py-5">
+
+    <div class="container">
+
+        <div class="section-heading text-center mb-5">
+
+            <span class="section-tag">
+                WHY ARTHASHASTRA
+            </span>
+
+            <h2 class="display-4 fw-semibold mt-3">
+                The Foundations of Enduring Prosperity
+            </h2>
+
+            <div class="luxury-divider my-4">
+                <span></span>
+                <div class="ornament">∞</div>
+                <span></span>
+            </div>
+
+            <p class="lead">
+                Ancient principles refined for modern wealth creation,
+                strategic leadership and long-term value preservation.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Pillar 1 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="pillar-card h-100 text-center">
+
+                    <div class="pillar-icon">
+                        <i class="bi bi-bank2"></i>
+                    </div>
+
+                    <h3>Ancient Wisdom</h3>
+
+                    <p>
+                        Chanakya-inspired frameworks rooted in strategic
+                        foresight, disciplined decision-making and
+                        enduring wealth principles.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="pillar-card h-100 text-center">
+
+                    <div class="pillar-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <h3>Modern Expertise</h3>
+
+                    <p>
+                        Contemporary financial strategy spanning treasury,
+                        investments, M&A and corporate advisory excellence.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="col-lg-4 col-md-12">
+
+                <div class="pillar-card h-100 text-center">
+
+                    <div class="pillar-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h3>Trusted Relationships</h3>
+
+                    <p>
+                        Confidential advisory partnerships built on trust,
+                        discretion and long-term strategic alignment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="insights advisory-domains" id="insights">
+    <div class="container">
+
+        <div class="section-head">
+            <span class="section-tag">Insights</span>
+            <h2 class="section-title">The Counsel Register</h2>
+                    <div class="luxury-divider">
+            <span></span>
+            <svg width="70" height="24" viewBox="0 0 70 24">
+                <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                         C58 0 48 0 35 12 C22 24 12 24 2 12"
+                      fill="none"
+                      stroke="#C9A84C"
+                      stroke-width="2"/>
+            </svg>
+            <span></span>
+        </div>
+            <p class="section-subtitle">
+                Twelve domains of advisory, drawn open to the matter at hand —
+                strategic counsel and growth advisory under one roof.
+            </p>
+        </div>
+
+        <div class="council-register" id="register">
+
+            <!-- Strategic Financial Advisory -->
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">Corporate Treasury Management</h4>
+                <p class="row-desc">Liquidity planning, capital allocation and treasury governance, structured for resilience under shifting conditions.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>Treat the reserve well as the kingdom's lifeline — never let it run dry before the dry season.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">Mergers &amp; Acquisitions</h4>
+                <p class="row-desc">Transaction strategy, valuation and execution support, from first approach to final integration.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>Every alliance is weighed in advance, by what each side gains and what it must concede.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">Family Office Advisory</h4>
+                <p class="row-desc">Multi-generational wealth management and governance, built to outlast any single steward.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>A dynasty's wealth is tested not by what it earns, but by what it still holds three generations on.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">Investment Strategy</h4>
+                <p class="row-desc">Portfolio construction and long-term wealth preservation, weighed against risk on the ruler's own terms.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>Never place the full treasury behind a single venture, however promising its omens.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">Startup &amp; Founder Advisory</h4>
+                <p class="row-desc">Capital raising, growth strategy and scaling support for founders building from first principles.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>A new venture is a new kingdom — its borders, alliances and treasury are all decided early.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag">Strategic Advisory</span>
+                </div>
+                <h4 class="row-title">C-Suite Financial Counsel</h4>
+                <p class="row-desc">Strategic advisory for executive leadership teams navigating high-stakes financial decisions.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>A minister's worth is measured by the counsel he gives when the decision is hardest.</p>
+                </div>
+            </div>
+
+            <!-- Business & Growth Advisory -->
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">India Entry Strategy</h4>
+                <p class="row-desc">Market entry planning and operational setup support, calibrated to local terrain and regulation.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>Know the terrain before the march — what serves in one province may fail in the next.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">Company Incorporation</h4>
+                <p class="row-desc">Entity formation, structuring and governance frameworks built right from the charter.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>A foundation laid crookedly costs more to straighten later than to set right at the start.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">Compliance Management</h4>
+                <p class="row-desc">Regulatory compliance and corporate secretarial support, kept current as the law shifts.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>The law is a river — those who track its course are never caught by its flood.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">Accounting &amp; Payroll</h4>
+                <p class="row-desc">Financial reporting, payroll and accounting operations, run with ledger-grade discipline.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>An accurate ledger is the quietest form of trust a treasury can keep.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">Human Capital Advisory</h4>
+                <p class="row-desc">Organization design, leadership and talent strategy for teams built to scale with intent.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>A king is only as strong as the ministers he chooses to keep close.</p>
+                </div>
+            </div>
+
+            <div class="register-card">
+                <div class="card-top">
+                    <span class="row-tag cat-growth">Business &amp; Growth</span>
+                </div>
+                <h4 class="row-title">Due Diligence &amp; Assurance</h4>
+                <p class="row-desc">Financial, operational and compliance due diligence, conducted before any commitment is made.</p>
+                <div class="row-note">
+                    <span>Counsel's Note</span>
+                    <p>Trust is extended only after it has first been verified.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><span class="legend-dot"></span>Strategic Financial Advisory</div>
+            <div class="legend-item"><span class="legend-dot"></span>Business &amp; Growth Advisory</div>
+        </div>
+
+    </div>
+</section>
+
+<section class="client-journey">
+
+    <div class="container">
+
+        <div class="journey-heading text-center">
+
+            <span>CLIENT JOURNEY</span>
+
+            <h2>
+                From Insight to Enduring Partnership
+            </h2>
+
+            <div class="luxury-divider">
+                <span></span>
+                <div class="ornament">∞</div>
+                <span></span>
+            </div>
+
+            <p>
+                Every engagement follows a disciplined and confidential
+                advisory process designed to create long-term value.
+            </p>
+
+        </div>
+
+        <div class="journey-wrapper">
+
+            <div class="journey-step">
+
+                <div class="step-number">01</div>
+
+                <h3>Discovery</h3>
+
+                <p>
+                    Understanding your objectives,
+                    challenges and aspirations.
+                </p>
+
+            </div>
+
+            <div class="journey-line"></div>
+
+            <div class="journey-step">
+
+                <div class="step-number">02</div>
+
+                <h3>Strategic Assessment</h3>
+
+                <p>
+                    Comprehensive evaluation of
+                    financial and business realities.
+                </p>
+
+            </div>
+
+            <div class="journey-line"></div>
+
+            <div class="journey-step">
+
+                <div class="step-number">03</div>
+
+                <h3>Advisory Framework</h3>
+
+                <p>
+                    Building a tailored roadmap
+                    aligned with long-term goals.
+                </p>
+
+            </div>
+
+            <div class="journey-line"></div>
+
+            <div class="journey-step">
+
+                <div class="step-number">04</div>
+
+                <h3>Execution Support</h3>
+
+                <p>
+                    Strategic guidance through
+                    implementation and decision-making.
+                </p>
+
+            </div>
+
+            <div class="journey-line"></div>
+
+            <div class="journey-step">
+
+                <div class="step-number">05</div>
+
+                <h3>Long-Term Partnership</h3>
+
+                <p>
+                    Continuous counsel and stewardship
+                    for sustainable growth.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="thought-leadership">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                THOUGHT LEADERSHIP
+            </span>
+
+            <h2>
+                Perspectives on Wealth, Strategy & Legacy
+            </h2>
+
+            <div class="luxury-divider">
+                <span></span>
+                <div class="ornament">∞</div>
+                <span></span>
+            </div>
+
+            <p>
+                Insights inspired by timeless wisdom and modern financial thinking.
+            </p>
+
+        </div>
+
+        <div class="insight-grid">
+
+            <!-- Featured Article -->
+
+            <article class="featured-article">
+
+                <img src="images\logo2.png" alt="">
+
+                <div class="article-content">
+
+                    <span class="article-category">
+                        FEATURED INSIGHT
+                    </span>
+
+                    <h3>
+                        The Modern Arthashastra
+                    </h3>
+
+                    <p>
+                        Exploring how Chanakya's strategic principles continue
+                        to shape leadership, governance and wealth creation
+                        in modern enterprises.
+                    </p>
+
+                    <a href="#">
+                        Read Perspective →
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- Side Articles -->
+
+            <div class="article-list">
+
+                <article class="mini-article">
+
+                    <div class="article-number">01</div>
+
+                    <div>
+
+                        <h4>Treasury Lessons from Chanakya</h4>
+
+                        <p>
+                            Ancient treasury principles for modern capital management.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <article class="mini-article">
+
+                    <div class="article-number">02</div>
+
+                    <div>
+
+                        <h4>Building Generational Wealth</h4>
+
+                        <p>
+                            Preserving wealth across generations with discipline and vision.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <article class="mini-article">
+
+                    <div class="article-number">03</div>
+
+                    <div>
+
+                        <h4>Strategic Capital Allocation</h4>
+
+                        <p>
+                            Aligning investments with long-term objectives and legacy goals.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="testimonials">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                TESTIMONIALS
+            </span>
+
+            <h2>
+                Trusted By Leaders & Wealth Creators
+            </h2>
+
+            <div class="luxury-divider">
+                <span></span>
+                <div class="ornament">∞</div>
+                <span></span>
+            </div>
+
+            <p>
+                Relationships built on trust, discretion and long-term value creation.
+            </p>
+
+        </div>
+
+        <div class="testimonial-grid">
+
+            <!-- Card 1 -->
+
+            <div class="testimonial-card">
+
+                <div class="quote-mark">"</div>
+
+                <p>
+                    Arthashastra brought exceptional clarity to our
+                    treasury strategy and long-term capital allocation
+                    decisions.
+                </p>
+
+                <div class="client-info">
+
+                    <h4>Family Office Principal</h4>
+
+                    <span>Private Family Office</span>
+
+                </div>
+
+            </div>
+
+            <!-- Card 2 -->
+
+            <div class="testimonial-card">
+
+                <div class="quote-mark">"</div>
+
+                <p>
+                    Their strategic insight and confidential advisory
+                    approach provided immense value during a complex
+                    investment transition.
+                </p>
+
+                <div class="client-info">
+
+                    <h4>Industrial Business Owner</h4>
+
+                    <span>Diversified Enterprise Group</span>
+
+                </div>
+
+            </div>
+
+            <!-- Card 3 -->
+
+            <div class="testimonial-card">
+
+                <div class="quote-mark">"</div>
+
+                <p>
+                    A rare combination of ancient wisdom and modern
+                    financial expertise. Trusted advisors in every sense.
+                </p>
+
+                <div class="client-info">
+
+                    <h4>Founder & Investor</h4>
+
+                    <span>Technology Venture Portfolio</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="faq-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                FREQUENTLY ASKED QUESTIONS
+            </span>
+
+            <h2>
+                Advisory Questions Answered
+            </h2>
+
+            <div class="luxury-divider">
+                <span></span>
+                <div class="ornament">∞</div>
+                <span></span>
+            </div>
+
+        </div>
+
+        <div class="faq-container">
+
+            <!-- FAQ 1 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    What makes Arthashastra different from traditional advisors?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Arthashastra combines timeless strategic principles inspired by Chanakya with modern financial expertise, delivering highly personalized and confidential advisory solutions.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 2 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Who are your ideal clients?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        We serve UHNIs, HNIs, Family Offices, Business Owners, Industrialists, Startup Founders, Investors and C-Suite Executives seeking strategic financial guidance.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 3 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Do you provide investment advisory services?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        We provide strategic investment perspectives and advisory support tailored to client objectives while maintaining a disciplined and long-term approach.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 4 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Can Arthashastra assist with M&A transactions?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Yes. We support clients with mergers, acquisitions, transaction evaluation, strategic structuring and execution guidance.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 5 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Do you work with startup founders?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Absolutely. We advise founders on capital strategy, fundraising readiness, growth planning and long-term value creation.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 6 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    How confidential is your advisory process?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Confidentiality is a cornerstone of our practice. All client engagements are handled with the highest standards of discretion and trust.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FAQ 7 -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    How do I schedule a consultation?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Simply submit a consultation request through our contact form and our advisory team will reach out to arrange a confidential discussion.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="contact-section">
+
+    <div class="contact-heading">
+        <span>PRIVATE CONSULTATION</span>
+
+        <h2>Begin A Confidential Conversation</h2>
+
+        <p>
+            Connect with our advisory team to discuss your financial,
+            strategic and wealth management objectives.
+        </p>
+    </div>
+        <div class="luxury-divider">
+            <span></span>
+            <svg width="70" height="24" viewBox="0 0 70 24">
+                <path d="M2 12 C12 0 22 0 35 12 C48 24 58 24 68 12
+                         C58 0 48 0 35 12 C22 24 12 24 2 12"
+                      fill="none"
+                      stroke="#C9A84C"
+                      stroke-width="2"/>
+            </svg>
+            <span></span>
+        </div>
+    <div class="contact-grid">
+
+        <!-- Left -->
+
+        <div class="contact-info">
+
+            <h3>Arthashastra Advisory</h3>
+
+            <p>
+                Ancient Wisdom. Modern Knowledge.
+            </p>
+
+            <div class="info-item">
+                <span>PHONE</span>
+                <h4>+91 91083 37980</h4>
+            </div>
+
+            <div class="info-item">
+                <span>EMAIL</span>
+                <h4>sudip@arthashastra.biz</h4>
+            </div>
+
+            <div class="info-item">
+                <span>ADVISORY COVERAGE</span>
+                <h4>Pan India</h4>
+            </div>
+
+            <div class="info-item">
+                <span>CONFIDENTIALITY</span>
+                <h4>100% Private Engagements</h4>
+            </div>
+
+        </div>
+
+        <!-- Right -->
+
+  <form class="contact-form" id="arthaForm" novalidate>
+
+    <div class="input-group">
+        <input type="text" id="fullName" name="name" placeholder="Full Name" required>
+    </div>
+
+    <div class="input-group">
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-group">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="company" name="company" placeholder="Company Name">
+    </div>
+
+    <div class="input-group full-width">
+        <select id="profile" name="profile" required>
+            <option value="" disabled selected>Which of the following best describes your profile?</option>
+            <option>Business Owner / Founder</option>
+            <option>Corporate Executive / C-Suite</option>
+            <option>Family Office / High-Net-Worth Individual (HNWI)</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width checkbox-group">
+        <label class="checkbox-group-label">Which areas of our advisory framework are you looking to optimize?</label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Corporate Strategy & Growth">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Corporate Strategy & Growth <em>(Scaling, organizational design)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Wealth & Investment Management">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Wealth & Investment Management <em>(Prosperity, asset allocation)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Corporate Governance & Ethics">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Corporate Governance & Ethics <em>(Risk management, structure)</em></span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="advisory_areas" value="Succession Planning & Leadership">
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">Succession Planning & Leadership <em>(Generational wealth transfer, executive transition)</em></span>
+        </label>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="annual_revenue" name="annual_revenue" required>
+            <option value="" disabled selected>What is your company's approximate annual revenue?</option>
+            <option>Under 1 Cr</option>
+            <option>1 Cr – 5 Cr</option>
+            <option>5 Cr – 20 Cr</option>
+            <option>20 Cr - 50 Cr</option>
+            <option>50 Cr - 100 Cr</option>
+            <option>Above 100 Cr</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="assets_size" name="assets_size">
+            <option value="" disabled selected>For Individuals/Family Offices: Approximate portfolio/assets size</option>
+            <option>Under 5 Cr</option>
+            <option>5 Cr – 20 Cr</option>
+            <option>20 Cr – 50 Cr</option>
+            <option>Above 50 Cr</option>
+        </select>
+    </div>
+
+    <div class="input-group full-width">
+        <textarea id="objective" name="objective" placeholder="Briefly describe the primary objective or challenge you wish to address with our strategists." required></textarea>
+    </div>
+
+    <div class="input-group full-width">
+        <select id="timeline" name="timeline" required>
+            <option value="" disabled selected>What is your expected timeline to begin this engagement?</option>
+            <option>Immediately (Within the next 30 days)</option>
+            <option>Planning ahead (1–3 months)</option>
+            <option>Just exploring options</option>
+        </select>
+    </div>
+
+    <div class="form-status" id="formStatus"></div>
+
+    <button type="submit" class="contact-btn" id="submitBtn">
+        Request Private Consultation
+    </button>
+
+</form>
+
+</section>
+
+<footer class="footer-section">
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <!-- Logo & About -->
+            <div class="footer-col">
+                <h4 class="footer-brand">ARTHASHASTRA</h4>
+
+                <p>
+                    Ancient Wisdom. Modern Knowledge.
+                    Strategic financial advisory for founders,
+                    enterprises, investors and family offices.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#advisory">Advisory</a></li>
+                    <li><a href="#insights.">Insights</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Advisory -->
+            <div class="footer-col">
+                <h3>Advisory Domains</h3>
+
+                <ul>
+                    <li>Treasury Management</li>
+                    <li>Mergers & Acquisitions</li>
+                    <li>Investment Strategy</li>
+                    <li>Family Office Advisory</li>
+                    <li>Founder Advisory</li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-col">
+                <h3>Contact</h3>
+
+                <p>📞 91083 37980</p>
+                <p>✉ sudip@arthashastra.biz</p>
+                <p>📍 Pan India Advisory Coverage</p>
+
+                <a href="contact.html" class="footer-btn">
+                    Request Consultation
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Arthashastra Advisory. All Rights Reserved.</p>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+window.addEventListener("scroll", () => {
+    document.querySelector(".navbar")
+        .classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        const faqItem = button.parentElement;
+
+        faqItem.classList.toggle('active');
+
+    });
+
+});
+</script>
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.navbar ul');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+<script>
+/* ===== Contact form (home page): client-side validation + backend submit ===== */
+/* Mirrors the exact submission logic used on contact.html, so both forms
+   behave identically and hit the same Netlify function. */
+
+(function(){
+    const form = document.getElementById('arthaForm');
+    const statusBox = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showStatus(message, type){
+        statusBox.textContent = message;
+        statusBox.className = 'form-status ' + type;
+    }
+
+    function clearFieldError(group){
+        group.classList.remove('invalid');
+    }
+
+    function setFieldError(group){
+        group.classList.add('invalid');
+    }
+
+    function validate(){
+        let valid = true;
+        const fields = [
+            { el: document.getElementById('fullName'), check: v => v.trim().length > 1 },
+            { el: document.getElementById('email'), check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { el: document.getElementById('phone'), check: v => /^[0-9+\-\s()]{7,15}$/.test(v) },
+            { el: document.getElementById('profile'), check: v => v !== '' },
+            { el: document.getElementById('annual_revenue'), check: v => v !== '' },
+            { el: document.getElementById('objective'), check: v => v.trim().length > 5 },
+            { el: document.getElementById('timeline'), check: v => v !== '' }
+        ];
+
+        fields.forEach(f => {
+            const group = f.el.closest('.input-group');
+            if(!f.check(f.el.value)){
+                setFieldError(group);
+                valid = false;
+            } else {
+                clearFieldError(group);
+            }
+        });
+
+        return valid;
+    }
+
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+        el.addEventListener('input', () => {
+            const group = el.closest('.input-group');
+            if(group) clearFieldError(group);
+        });
+    });
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        statusBox.className = 'form-status';
+
+        if(!validate()){
+            showStatus('Please fill in all required fields correctly before submitting.', 'error');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const formData = {
+            name: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            company: document.getElementById('company').value,
+
+            profile: document.getElementById('profile').value,
+
+            advisory_areas: Array.from(
+                document.querySelectorAll('input[name="advisory_areas"]:checked')
+            )
+            .map(checkbox => checkbox.value)
+            .join(', ') || 'None selected',
+
+            annual_revenue: document.getElementById('annual_revenue').value,
+            assets_size: document.getElementById('assets_size').value,
+            objective: document.getElementById('objective').value,
+            timeline: document.getElementById('timeline').value
+        };
+
+        fetch('/.netlify/functions/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(async function(response) {
+                const result = await response.json().catch(() => ({}));
+                if (response.ok && result.success) {
+                    showStatus('Thank you. Your request has been received — our advisory team will be in touch shortly.', 'success');
+                    form.reset();
+                } else {
+                    console.error('Backend error:', result);
+                    showStatus(result.message || 'Something went wrong. Please try again or email us directly at sudip@arthashastra.biz.', 'error');
+                }
+            })
+            .catch(function(error) {
+                console.error('FAILED...', error);
+                showStatus('Network error — please check your connection and try again, or email us directly at sudip@arthashastra.biz.', 'error');
+            })
+            .finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Private Consultation';
+            });
+    });
+})();
+</script>
+</body>
+</html>

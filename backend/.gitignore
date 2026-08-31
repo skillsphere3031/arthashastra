@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Netlify local files
+.netlify/
+
+# Python virtual environment
+**/venv/
+**/.venv/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
