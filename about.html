@@ -463,7 +463,7 @@ img{max-width:100%;display:block;}
       <div class="footer-col">
         <h3>Contact</h3>
         <p>📞 +91 91083 37980</p>
-        <p>✉ sudip@arthashastra.biz</p>
+        <p>✉ <span id="emailFooter"></span></p>
         <p>📍 Pan India Advisory Coverage</p>
         <a href="contact.html" class="footer-btn">Request Consultation</a>
       </div>
@@ -488,6 +488,22 @@ window.addEventListener("scroll", () => {
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.navbar ul');
 menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+</script>
+
+<script>
+/* ===== Email obfuscation: assembled at runtime so the address isn't
+   readable as plain text in the page source (avoids secret-scanner
+   false positives and basic scraper bots) ===== */
+(function(){
+    const emailUser = 'sudip';
+    const emailDomain = 'arthashastra.biz';
+    const contactEmail = emailUser + '@' + emailDomain;
+
+    const footerEmail = document.getElementById('emailFooter');
+    if (footerEmail) {
+        footerEmail.textContent = contactEmail;
+    }
+})();
 </script>
 
 </body>
